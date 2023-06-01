@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./utils.css" />
+    <script src="./index.js"></script>
+    <title>Budget App</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="budget-input-wrapper">
+        <input
+          class="budget-input"
+          type="number"
+          min="0"
+          placeholder="Enter Your Budget"
+          required
+        />
+        <button class="btn add-budget">Add Budget</button>
+      </div>
+
+      <div class="budget-statistics">
+        <h2>Your Budget Statistics</h2>
+        <div class="budget-statistics-wrapper">
+          <div class="total-budget">
+            <span>Budget: </span>
+            <span class="total-budget-value">0.00</span>
+          </div>
+          <div class="remaining-budget">
+            <span>Remaining: </span>
+            <span class="remaining-budget-value">0.00</span>
+          </div>
+          <div class="spent-budget">
+            <span>Spent: </span>
+            <span class="spent-budget-value">0.00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="budget-expenses-wrapper flex flex-wrap gap-30">
+        <div class="budget-add-expense-wrapper flex-1 gap-20 flex flex-column">
+          <h2>Add Expense</h2>
+          <div class="flex flex-column gap-10">
+            <label for="expense-date">Date *</label>
+            <input type="date" id="expense-date" required />
+          </div>
+          <div class="flex flex-column gap-10">
+            <label for="expense-amout">Amount *</label>
+            <input type="number" min="0" id="expense-amount" required />
+          </div>
+          <div class="flex flex-column gap-10">
+            <label for="expense-category">Category *</label>
+            <select id="expense-category"></select>
+          </div>
+          <div class="flex flex-column gap-10">
+            <label for="expense-description">Description *</label>
+            <textarea rows="5" id="expense-description"></textarea>
+          </div>
+          <div class="flex flex-column gap-10">
+            <button class="btn add-expense">Add Expense</button>
+          </div>
+        </div>
+        <div class="budget-expenses-list-wrapper flex-basis-50">
+          <h2>Expenses</h2>
+          <ul class="budget-expenses-list"></ul>
+        </div>
+        <div class="budget-expenses-add-category-wrapper flex-1">
+          <h2>Add Category</h2>
+          <div class="flex flex-column gap-10">
+            <label for="new-expense-category">New Category</label>
+            <input type="text" id="new-expense-category" required />
+            <button class="btn add-expense-category-btn">Add Category</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,173 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+body {
+  padding: 20px;
+  font-size: 16px;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+input {
+  outline: none;
+  font-size: 16px;
+  padding: 8px 10px;
+  border-radius: 5px;
+  font-size: inherit;
+  font-family: inherit;
+  border: 1px solid #cccccc;
+}
+/*** Budget Wrapper Css ***/
+.budget-input-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.budget-input-wrapper {
+  display: flex;
+  gap: 10px;
+}
+.budget-input-wrapper input {
+  width: 400px;
+}
+/*** Budget Statistics Css ***/
+.budget-statistics {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.budget-statistics-wrapper {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+.budget-statistics h2 {
+  margin: 30px 0;
+}
+.budget-statistics-wrapper div {
+  background-color: #eeeeee;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 5px;
+}
+.budget-statistics-wrapper span {
+  font-size: 25px;
+}
+/*** Expense CSS ***/
+.budget-expenses-wrapper h2 {
+  font-size: 30px;
+}
+.budget-add-expense-wrapper select {
+  outline: none;
+  font-size: 16px;
+  padding: 8px 10px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+}
+.budget-expenses-list {
+  gap: 10px;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  flex-direction: column;
+}
+.budget-expenses-list li div span {
+  display: block;
+}
+.budget-expenses-list li {
+  gap: 10px;
+  display: flex;
+  padding: 25px;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: space-between;
+}
+.budget-expenses-list li input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: inherit;
+  font-family: inherit;
+  padding: 4px 10px;
+  width: 100%;
+  text-align: center;
+}
+.budget-expenses-list li.editing input {
+  border: 1px solid #000000;
+}
+.budget-expenses-list li:nth-child(odd) {
+  background-color: #eeeeee;
+}
+.budget-expenses-list li:nth-child(even) {
+  border: 1px solid #cccccc;
+}
+.budget-expenses-list .expense-list-item:not(.editing) select {
+  pointer-events: none;
+  outline: none;
+  font-size: 16px;
+  padding: 8px 10px;
+  border-radius: 5px;
+  appearance: none;
+  background: transparent;
+  border: 0px;
+  width: 100%;
+  text-align: center;
+}
+.budget-expenses-list .expense-list-item.editing .btn.delete-btn {
+  opacity: 0.3;
+  pointer-events: none;
+}
+.budget-expenses-list .expense-list-item.editing select {
+  text-align: center;
+  outline: none;
+  font-size: 16px;
+  padding: 8px 10px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+}
+.budget-expenses-list li div {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.btn.edit-btn {
+  padding: 10px 16px;
+  font-size: 12px;
+  border: 1px solid #000000;
+}
+.btn.edit-btn:hover {
+  background-color: transparent;
+}
+.btn.delete-btn {
+  font-size: 12px;
+  padding: 10px 16px;
+  color: #f44336;
+  background-color: transparent;
+  border: 1px solid #f44336;
+}
+.btn.delete-btn:hover {
+  background-color: #f44336;
+  color: #ffffff;
+}
+@media only screen and (max-width: 930px) {
+  .budget-expenses-wrapper {
+    flex-direction: column;
+  }
+}
+@media only screen and (max-width: 600px) {
+  div.budget-expenses-list-wrapper {
+    flex-basis: 100%;
+  }
+  .budget-statistics-wrapper {
+    flex-direction: column;
+  }
+  .budget-expenses-list .expense-list-item.editing select,
+  .budget-expenses-list li input {
+    width: 100%;
+  }
+  .budget-expenses-list li {
+    flex-direction: column;
+  }
+}
