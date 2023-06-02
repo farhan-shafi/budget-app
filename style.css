@@ -101,7 +101,8 @@ input {
 .budget-expenses-list li:nth-child(even) {
   border: 1px solid #cccccc;
 }
-.budget-expenses-list .expense-list-item:not(.editing) select {
+.budget-expenses-list .expense-list-item:not(.editing) select,
+.budget-expenses-list .expense-list-item:not(.editing) input {
   pointer-events: none;
   outline: none;
   font-size: 16px;

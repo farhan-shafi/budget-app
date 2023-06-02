@@ -34,16 +34,30 @@ class BudgetApp {
       },
     ];
     this.expensesList = [];
+
+    this.noExpenseDiv = document.createElement("div");
+    this.noExpenseDiv.classList.add("no-expense-found");
+    this.noExpenseDiv.innerText = "You don't have any expense.";
+
     this.init();
   }
   init() {
     this.attachEventHandler();
     this.addInitialCategories();
+    this.noExpenseMessage();
   }
   addInitialCategories() {
     this.expenseCategories.forEach((category) => {
       this.addExpenseCategory(category);
     });
+  }
+  noExpenseMessage() {
+    let expenseList = document.querySelectorAll(".expense-list-item");
+    if (expenseList.length > 0) {
+      this.expensesListElement.removeChild(this.noExpenseDiv);
+    } else {
+      this.expensesListElement.appendChild(this.noExpenseDiv);
+    }
   }
   addExpenseListItem({ date, amount, category, description }) {
     let listItem = document.createElement("li");
@@ -82,15 +96,14 @@ class BudgetApp {
 
       if (item.tag !== "select") {
         itemElem.setAttribute("type", item.type);
-        itemElem.readOnly = true;
 
         itemElem.value = item.value;
       } else {
         this.expenseCategories.forEach((category) => {
           const option = this.createOption(category);
-          itemElem.value = this.convertToKababCase(item.value);
-
           itemElem.appendChild(option);
+
+          itemElem.value = this.convertToKababCase(item.value);
         });
       }
       listItem.appendChild(itemElem);
@@ -125,7 +138,6 @@ class BudgetApp {
       listItem.classList.add("editing");
       btn.innerHTML = "Update";
       listItemExpenseInputs.forEach((input) => {
-        input.readOnly = false;
         if (input.classList.contains("expense-list-item-amount")) {
           this.updateRemainingBudget(Number(input.value), "+");
           this.updateSpentBudget(Number(input.value), "-");
@@ -138,14 +150,13 @@ class BudgetApp {
           if (this.remainingBudget >= updatedAmount && updatedAmount > 0) {
             this.updateRemainingBudget(updatedAmount);
             this.updateSpentBudget(updatedAmount);
-            input.readOnly = true;
             btn.innerHTML = "Edit";
             listItem.classList.remove("editing");
           } else if (updatedAmount < 0) {
             alert(`Sorry! You can't enter a negative value`);
           } else {
             alert(
-              `Sorry! You have only ${this.remainingBudget} amount available`
+              `Sorry! You have only ${this.remainingBudget} amount remaining`
             );
           }
         }
@@ -161,6 +172,7 @@ class BudgetApp {
       }
     });
     listItem.remove();
+    this.noExpenseMessage();
   }
 
   createOption(category) {
@@ -217,7 +229,7 @@ class BudgetApp {
         });
         this.updateRemainingBudget(amount);
         this.updateSpentBudget(amount);
-
+        this.noExpenseMessage();
         this.expenseDate.value = "";
         this.expenseAmount.value = "";
         this.expenseCategory.value = "";
@@ -225,10 +237,10 @@ class BudgetApp {
       } else if (amount < 0) {
         alert(`Sorry! You can't enter a negative value`);
       } else {
-        alert(`Sorry! You have only ${this.remainingBudget} amount available`);
+        alert(`Sorry! You have only ${this.remainingBudget} amount remaining`);
       }
     } else {
-      alert("Make sure you have fill all fields.");
+      alert("All fields are required!");
     }
   }
   convertToKababCase(string) {
@@ -277,14 +289,21 @@ class BudgetApp {
           value,
           label,
         };
+        const categoryExist = this.expenseCategories.findIndex(
+          (cat) => value === cat.value
+        );
 
-        expenseItemCategories.forEach((item) => {
-          item.appendChild(this.createOption(newCategoryObject));
-        });
+        if (categoryExist === -1) {
+          expenseItemCategories.forEach((item) => {
+            item.appendChild(this.createOption(newCategoryObject));
+          });
 
-        this.addExpenseCategory(newCategoryObject);
-        this.expenseCategories.push(newCategoryObject);
-        this.newExpenseCategory.value = "";
+          this.addExpenseCategory(newCategoryObject);
+          this.expenseCategories.push(newCategoryObject);
+          this.newExpenseCategory.value = "";
+        } else {
+          alert(`Category ${label} already exist.`);
+        }
       }
     });
   }
