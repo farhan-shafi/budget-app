@@ -32,6 +32,22 @@ class BudgetApp {
         label: "Food",
         value: "food",
       },
+      {
+        label: "Shopping",
+        value: "shopping",
+      },
+      {
+        label: "Utility Bills",
+        value: "utility-bills",
+      },
+      {
+        label: "Transport",
+        value: "transport",
+      },
+      {
+        label: "Internet & Mobile",
+        value: "internet-&-mobile",
+      },
     ];
     this.expensesList = [];
 
