@@ -68,10 +68,13 @@ class BudgetApp {
     });
   }
   noExpenseMessage() {
-    let expenseList = document.querySelectorAll(".expense-list-item");
-    if (expenseList.length > 0) {
+    if (
+      this.expensesListElement.hasChildNodes() &&
+      this.expensesListElement.contains(this.noExpenseDiv)
+    ) {
       this.expensesListElement.removeChild(this.noExpenseDiv);
-    } else {
+    }
+    if (!this.expensesListElement.hasChildNodes()) {
       this.expensesListElement.appendChild(this.noExpenseDiv);
     }
   }
